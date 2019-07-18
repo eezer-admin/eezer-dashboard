@@ -34,6 +34,10 @@ export class UsersTableComponent {
         title: 'Username',
         type: 'string',
       },
+      password: {
+        title: 'Password',
+        type: 'string',
+      },
       realName: {
         title: 'Real Name',
         type: 'string',

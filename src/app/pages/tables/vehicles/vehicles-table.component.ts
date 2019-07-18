@@ -34,20 +34,44 @@ export class VehiclesTableComponent {
         title: 'ID',
         type: 'string',
       },
-      realName: {
-        title: 'Real Name',
+      country: {
+        title: 'Country',
         type: 'string',
       },
-      location: {
-        title: 'Location',
+      region: {
+        title: 'Region',
         type: 'string',
       },
-      role: {
-        title: 'Role',
+      Organization: {
+        title: 'organization',
         type: 'string',
       },
-      createdTime: {
-        title: 'CreatedTime',
+      contact: {
+        title: 'Contact',
+        type: 'string',
+      },
+      phone: {
+        title: 'Phone',
+        type: 'string',
+      },
+      email: {
+        title: 'Email',
+        type: 'string',
+      },
+      address: {
+        title: 'Address',
+        type: 'string',
+      },
+      yearOfManufacture: {
+        title: 'Year Of Manufacture',
+        type: 'string',
+      },
+      handoverDate: {
+        title: 'Handover Date',
+        type: 'string',
+      },
+      runningTime: {
+        title: 'Running Time',
         type: 'string',
       }
     }

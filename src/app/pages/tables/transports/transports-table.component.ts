@@ -18,10 +18,6 @@ export class TransportsTableComponent {
   settings = {
     actions: false,
     columns: {
-      transportId: {
-        title: 'ID',
-        type: 'string',
-      },
       driverId: {
         title: 'Driver ID',
         type: 'string',
@@ -36,6 +32,14 @@ export class TransportsTableComponent {
       },
       distance: {
         title: 'Distance (m)',
+        type: 'string',
+      },
+      started: {
+        title: 'Start time',
+        type: 'string',
+      },
+      ended: {
+        title: 'End time',
         type: 'string',
       },
       passengerName: {
@@ -57,8 +61,26 @@ export class TransportsTableComponent {
 
   constructor(private service: TransportsService, private _router: Router) {
     this.service.getTransportsData((result: any) => {
+      result.data.forEach(transport => {
+        transport.started = this.formatDate(transport.started)
+        transport.ended = this.formatDate(transport.ended)
+      });
       this.source.load(result.data);
     });
+  }
+
+  formatDate(date) {
+    let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    let result = [year, month, day].join('-');
+    result += ' ' + d.toLocaleTimeString();
+    return result;
   }
 
   onDeleteConfirm(event): void {

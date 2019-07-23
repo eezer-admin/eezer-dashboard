@@ -7,6 +7,7 @@ import { of as observableOf } from 'rxjs';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
+import { NBUserPassAuthProvider } from '../providers/nb-user-pass-auth-provider';
 
 const socialLinks = [
   {
@@ -38,7 +39,7 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
     providers: {
       email: {
-        service: NbEmailPassAuthProvider,// ,NBUserPassAuthProvider
+        service:  NBUserPassAuthProvider, // NbEmailPassAuthProvider
         config: {
           delay: 3000,
           baseEndpoint: 'https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod',

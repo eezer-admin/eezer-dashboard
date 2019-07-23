@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './auth-guard.service';
 import { NbUserInterceptor } from './providers/nbuser-interceptor';
 import { NbAuthJWTInterceptor } from '@nebular/auth/services/interceptors/jwt-interceptor';
+import { NBUserPassAuthProvider } from './providers/nb-user-pass-auth-provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,6 @@ import { NbAuthJWTInterceptor } from '@nebular/auth/services/interceptors/jwt-in
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
@@ -35,7 +35,8 @@ import { NbAuthJWTInterceptor } from '@nebular/auth/services/interceptors/jwt-in
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: NbUserInterceptor, multi: true },
-    AuthGuard
+    AuthGuard,
+    NBUserPassAuthProvider,
   ],
 })
 export class AppModule {

@@ -19,6 +19,7 @@ export class VehiclesTableComponent {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
@@ -91,5 +92,20 @@ export class VehiclesTableComponent {
     } else {
       event.confirm.reject();
     }
+  }
+
+  onCreateConfirm(event): void {
+    if (window.confirm('Are you sure you want to create this?'))
+      this.service.createVehicle(event.newData).subscribe((response) => {
+        if (response.success)
+          event.confirm.resolve();
+        else
+          event.confirm.reject();
+      }, response => {
+        alert(response.error.message + ': ' + response.error.message_extra.join(', '));
+        event.confirm.reject();
+      });
+    else
+      event.confirm.reject();
   }
 }

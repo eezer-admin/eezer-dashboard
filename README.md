@@ -8,4 +8,4 @@ Though in the development Nebular app consists of a number of TypeScript, SASS, 
 * Copy the output from the dist folder under a web-server of your choice.
 
 
-More details on how to setup your web-server to better serve the application can be found on Angular Documentation website, under Server Configuration section. [a link](https://angular.io/guide/deployment#server-configuration)
+More details on how to setup your web-server to better serve the application can be found on Angular Documentation website, under Server Configuration [section.](https://angular.io/guide/deployment#server-configuration)

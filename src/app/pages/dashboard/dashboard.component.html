@@ -1,14 +1,16 @@
 <div class="row">
   <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="Drivers" value='5000' type="primary">
+    <ngx-status-card title="Drivers" value='{{numberOfDrivers}}' type="primary">
       <i class="nb-person"></i>
     </ngx-status-card>
   </div>
 
   <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="Vehicles" value='1500' type="success">
-      <i class="fa fa-automobile"></i>
-    </ngx-status-card>
+    <a class="lnk-vehicle" href='#/pages/tables/vehicles'>
+      <ngx-status-card title="Vehicles" value='{{numberOfVehicles}}' type="success">
+        <i class="fa fa-automobile"></i>
+      </ngx-status-card>
+    </a>
   </div>
 
   <div class="col-xxxl-3 col-md-6">

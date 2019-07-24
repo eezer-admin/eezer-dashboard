@@ -13,10 +13,14 @@ export class VehiclesService {
   }
 
   getVehiclesData(calbk: any) {
-    let result = this.http.get('/getvehicles').subscribe(vehicles => calbk(vehicles));
+    this.http.get('/getvehicles').subscribe(vehicles => calbk(vehicles));
   }
 
   createVehicle(vehicle: any): Observable<any> {
     return this.http.post('/addvehicle', vehicle);
+  }
+
+  getNumberofVehicles(): Observable<any> {
+    return this.http.get('/getnumbervehicles');
   }
 }

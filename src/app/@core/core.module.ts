@@ -27,6 +27,9 @@ const socialLinks = [
   },
 ];
 
+const backendUrl = 'https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod'
+const backendUrl_dm = 'http://18.200.174.228:8080';
+
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
     // here you could provide any role based on any auth flow
@@ -39,10 +42,10 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
     providers: {
       email: {
-        service:  NBUserPassAuthProvider, // NbEmailPassAuthProvider
+        service: NBUserPassAuthProvider, // NbEmailPassAuthProvider
         config: {
           delay: 3000,
-          baseEndpoint: 'https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod',
+          baseEndpoint: backendUrl,
           login: {
             endpoint: '/api/login',
             rememberMe: false,

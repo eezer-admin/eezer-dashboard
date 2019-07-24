@@ -32,7 +32,7 @@ export class UserService {
   }
 
   getUsersData(calbk: any) {
-    const result = this.http.get('/getusers').subscribe(users => calbk(users));
+    this.http.get('/getusers').subscribe(users => calbk(users));
   }
 
   createUser(user: any): Observable<any> {
@@ -44,5 +44,9 @@ export class UserService {
     // const options = { params: new HttpParams().set('username', user.email) };
 
     return this.http.delete('/rmuser/' + user.email);
+  }
+
+  getNumberofDrivers(): Observable<any> {
+    return this.http.get('/getNumberDrivers');
   }
 }

@@ -12,7 +12,9 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import { NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators/tap';
+
+const backendUrl = 'https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod/api';
+const backendUrl_dm = 'http://18.200.174.228:8080/api';
 
 @Injectable()
 export class NbUserInterceptor implements HttpInterceptor {
@@ -37,9 +39,9 @@ export class NbUserInterceptor implements HttpInterceptor {
       duplicate = req.clone({ body: loginModel });
     }
 
-    if (req.url.toLowerCase().lastIndexOf('https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod/api') === -1)
+    if (req.url.toLowerCase().lastIndexOf(backendUrl) === -1)
       duplicate = req.clone({
-        url: 'https://mdcxqhwaz8.execute-api.eu-west-1.amazonaws.com/prod/api' + req.url,
+        url: backendUrl + req.url,
       });
 
     if (duplicate === undefined)

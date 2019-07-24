@@ -2,12 +2,15 @@
 import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { e } from '@angular/core/src/render3';
 
 let counter = 0;
 
 @Injectable()
 export class UserService {
+
+  private users = {
+    admin: { name: 'Admin', picture: 'assets/images/kitten-cosmic.png' }
+  };
 
   private userArray: any[];
 

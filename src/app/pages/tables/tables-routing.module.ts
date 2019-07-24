@@ -6,6 +6,7 @@ import { SmartTableComponent } from './smart-table/smart-table.component';
 import { UsersTableComponent } from './users/users-table.component';
 import { VehiclesTableComponent } from './vehicles/vehicles-table.component';
 import { TransportsTableComponent } from './transports/transports-table.component';
+import { DriversTableComponent } from './drivers/drivers-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [{
   {
     path: 'users',
     component: UsersTableComponent,
+  },
+  {
+    path: 'drivers',
+    component: DriversTableComponent,
   },
   {
     path: 'vehicles',
@@ -38,6 +43,7 @@ export const routedComponents = [
   TablesComponent,
   SmartTableComponent,
   UsersTableComponent,
+  DriversTableComponent,
   VehiclesTableComponent,
   TransportsTableComponent,
 ];

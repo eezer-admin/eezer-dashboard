@@ -21,7 +21,7 @@ import { TransportsService } from '../../@core/data/transports.service';
     SmartTableService,
     UserService,
     VehiclesService,
-    TransportsService
+    TransportsService,
   ],
 })
 export class TablesModule { }

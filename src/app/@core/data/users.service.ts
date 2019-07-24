@@ -2,15 +2,12 @@
 import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { e } from '@angular/core/src/render3';
 
 let counter = 0;
 
 @Injectable()
 export class UserService {
-
-  private users = {
-    admin: { name: 'Admin', picture: 'assets/images/kitten-cosmic.png' }
-  };
 
   private userArray: any[];
 
@@ -33,6 +30,17 @@ export class UserService {
 
   getUsersData(calbk: any) {
     this.http.get('/getusers').subscribe(users => calbk(users));
+  }
+
+  getDriversData(calbk: any) {
+    this.http.get('/getusers').subscribe((result: any) => {
+      const drivers = result.data.filter(el => el.role.toLowerCase() === 'driver');
+
+
+      calbk(drivers);
+
+    });
+
   }
 
   createUser(user: any): Observable<any> {

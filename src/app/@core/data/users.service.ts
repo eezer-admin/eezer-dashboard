@@ -1,7 +1,7 @@
 
 import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 let counter = 0;
 
@@ -32,6 +32,17 @@ export class UserService {
   }
 
   getUsersData(calbk: any) {
-    let result = this.http.get('/getusers').subscribe(users => calbk(users));
+    const result = this.http.get('/getusers').subscribe(users => calbk(users));
+  }
+
+  createUser(user: any): Observable<any> {
+    return this.http.post('/adduser', user);
+  }
+
+  removeUser(user: any): Observable<any> {
+
+    // const options = { params: new HttpParams().set('username', user.email) };
+
+    return this.http.delete('/rmuser/' + user.email);
   }
 }

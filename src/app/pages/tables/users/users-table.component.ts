@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { UserService } from '../../../@core/data/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -19,6 +20,7 @@ export class UsersTableComponent {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
@@ -61,21 +63,48 @@ export class UsersTableComponent {
       other: {
         title: 'Other',
         type: 'string',
-      }
+      },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService, private toastr: ToastrService) {
     this.service.getUsersData((result: any) => {
       this.source.load(result.data);
     });
   }
 
+  onCreateConfirm(event): void {
+    if (window.confirm('Are you sure you want to create this?'))
+      this.service.createUser(event.newData).subscribe((response) => {
+        if (response.success)
+          event.confirm.resolve();
+        else
+          event.confirm.reject();
+      }, response => {
+        this.toastr.error(response.error.message_extra.join(', <br />'), response.error.message,
+          { timeOut: 3000, enableHtml: true });
+
+        event.confirm.reject();
+      });
+    else
+      event.confirm.reject();
+  }
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+      this.service.removeUser(event.data).subscribe((response) => {
+        if (response.success)
+          event.confirm.resolve();
+        else
+          event.confirm.reject();
+      }, response => {
+        this.toastr.error(response.error.message_extra.join(', <br />'), response.error.message,
+          { timeOut: 3000, enableHtml: true });
+
+        event.confirm.reject();
+      });
     } else {
       event.confirm.reject();
     }

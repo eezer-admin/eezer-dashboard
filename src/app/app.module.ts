@@ -18,7 +18,7 @@ import { AuthGuard } from './auth-guard.service';
 import { NbUserInterceptor } from './providers/nbuser-interceptor';
 import { NbAuthJWTInterceptor } from '@nebular/auth/services/interceptors/jwt-interceptor';
 import { NBUserPassAuthProvider } from './providers/nb-user-pass-auth-provider';
-// import { NbToastrModule, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,14 +30,7 @@ import { NBUserPassAuthProvider } from './providers/nb-user-pass-auth-provider';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    // NbToastrModule.forRoot({
-    //   // status: NbToastStatus.WARNING,
-    //   destroyByClick: true,
-    //   duration: 4000,
-    //   hasIcon: true,
-    //   position: NbGlobalPhysicalPosition.TOP_RIGHT,
-    //   preventDuplicates: false,
-    // }),
+    ToastrModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [

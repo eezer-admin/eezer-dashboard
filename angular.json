@@ -165,7 +165,7 @@
       }
     }
   },
-  "defaultProject": "eezer-admin-dashboard",
+  "defaultProject": "eezer-dashboard",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"

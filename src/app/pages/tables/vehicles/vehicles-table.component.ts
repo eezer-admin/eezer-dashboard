@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { VehiclesService } from '../../../@core/data/vehicles.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -43,7 +44,7 @@ export class VehiclesTableComponent {
         title: 'Region',
         type: 'string',
       },
-      Organization: {
+      organization: {
         title: 'organization',
         type: 'string',
       },
@@ -74,13 +75,13 @@ export class VehiclesTableComponent {
       runningTime: {
         title: 'Running Time',
         type: 'string',
-      }
-    }
+      },
+    },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: VehiclesService) {
+  constructor(private service: VehiclesService, private toastr: ToastrService) {
     this.service.getVehiclesData((result: any) => {
       this.source.load(result.data);
     });
@@ -102,7 +103,9 @@ export class VehiclesTableComponent {
         else
           event.confirm.reject();
       }, response => {
-        alert(response.error.message + ': ' + response.error.message_extra.join(', '));
+        this.toastr.error(response.error.message_extra.join(', <br />'), response.error.message,
+          { timeOut: 3000, enableHtml: true });
+
         event.confirm.reject();
       });
     else

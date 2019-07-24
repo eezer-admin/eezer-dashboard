@@ -1,9 +1,9 @@
-#Eezer admin dashboard
+# Eezer admin dashboard
 -----------------
 
 This app is based on [Nebular](https://akveo.github.io/nebular/), and deployed by [Headlight](http://headlight.se/)
 
-##[Server Deployment](https://akveo.github.io/nebular/docs/guides/server-deployment#server-deployment)
+## [Server Deployment](https://akveo.github.io/nebular/docs/guides/server-deployment#server-deployment)
 -----------------
 
 Though in the development Nebular app consists of a number of TypeScript, SASS, etc files, the built package is just a bunch HTML/JavaScript/CSS files. No other processing is needed to get them running in a browser. So to deploy the app you basically need two simple steps:

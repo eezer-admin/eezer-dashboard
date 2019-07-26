@@ -1,0 +1,11 @@
+<div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <div class="logo-containter">
+
+    <div class="logo" (click)="goToHome()">Eezer<span> Dashboard</span></div>
+  </div>
+</div>
+
+<nb-actions size="medium" class="header-container" [class.right]="position === 'normal'"
+  [class.left]="position === 'inverse'">
+  <nb-action> <a href="#/pages/dashboard">{{lnkTitle}}</a></nb-action>
+</nb-actions>

@@ -21,7 +21,9 @@ import { NBUserPassAuthProvider } from './providers/nb-user-pass-auth-provider';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

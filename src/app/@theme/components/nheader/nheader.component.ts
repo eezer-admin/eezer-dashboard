@@ -7,11 +7,11 @@ import { map } from 'rxjs/internal/operators/map';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-header',
-  styleUrls: ['./header.component.scss'],
-  templateUrl: './header.component.html',
+  selector: 'ngx-nheader',
+  styleUrls: ['./nheader.component.scss'],
+  templateUrl: './nheader.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class NHeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
@@ -32,40 +32,20 @@ export class HeaderComponent implements OnInit {
     private authService: NbAuthService,
     private router: Router) {
 
-    this.user = {
-      name: localStorage.getItem('username'),
-      picture: '',
-    }
+    this.authService.isAuthenticated().subscribe(res => {
+      if (res === true && localStorage.getItem('username'))
+        this.lnkTitle = localStorage.getItem('username');
+    })
+
   }
+
+  lnkTitle = 'Log in';
 
   ngOnInit() {
 
-    this.menuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'my-user-menu'),
-        map(({ item: { title } }) => title),
-      )
-      .subscribe(title => {
-        if (title.toLowerCase() === 'log out')
-          this.authService.logout('email');
-      });
-  }
-
-  toggleSidebar(): boolean {
-    this.sidebarService.toggle(true, 'menu-sidebar');
-    return false;
-  }
-
-  toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
-    return false;
   }
 
   goToHome() {
     this.menuService.navigateHome();
-  }
-
-  startSearch() {
-    this.analyticsService.trackEvent('startSearch');
   }
 }

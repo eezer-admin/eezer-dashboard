@@ -49,7 +49,7 @@ export class NbUserInterceptor implements HttpInterceptor {
 
     return next.handle(duplicate).catch(err => {
       if (err.status === 401)
-        this.authService.logout('email');
+        this.router.navigate(['auth/login']);
 
       return Observable.throw(err);
     });

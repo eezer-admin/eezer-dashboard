@@ -12,7 +12,10 @@ import {
 import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
-  // { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
+  {
+    path: 'home',
+    loadChildren: 'app/home/home.module#HomeModule',
+  },
   {
     path: 'pages',
     canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
@@ -48,8 +51,8 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 const config: ExtraOptions = {

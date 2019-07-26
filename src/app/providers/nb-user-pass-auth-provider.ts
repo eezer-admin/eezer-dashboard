@@ -44,6 +44,7 @@ export class NBUserPassAuthProvider extends NbAbstractAuthProvider {
     // private authService: NbAuthService,
     private tokenService: NbTokenService,
     private router: Router,
+
   ) {
     super();
   }
@@ -51,6 +52,7 @@ export class NBUserPassAuthProvider extends NbAbstractAuthProvider {
   logout(): Observable<NbAuthResult> {
 
     this.tokenService.clear();
+    localStorage.setItem('username', '');
     // this.router.navigate(['auth/login']);
     // this.router.navigateByUrl('/auth/login');
     window.location.href = '/';
@@ -77,7 +79,7 @@ export class NBUserPassAuthProvider extends NbAbstractAuthProvider {
       return new NbAuthResult(
         true,
         JWTToken.token,
-        '/',
+        '/pages/dashboard',
         false,
         `Sign in successful!`,
         res.data.token,

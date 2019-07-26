@@ -30,11 +30,13 @@ import {
   LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
   TinyMCEComponent,
+  NHeaderComponent,
 } from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
   OneColumnLayoutComponent,
   SampleLayoutComponent,
+  HomeLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 } from './layouts';
@@ -65,12 +67,14 @@ const COMPONENTS = [
   LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
   HeaderComponent,
+  NHeaderComponent,
   FooterComponent,
   SearchInputComponent,
   ThemeSettingsComponent,
   TinyMCEComponent,
   OneColumnLayoutComponent,
   SampleLayoutComponent,
+  HomeLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 ];

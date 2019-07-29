@@ -71,7 +71,7 @@ export class UsersTableComponent {
 
   constructor(private service: UserService, private toastr: ToastrService) {
     this.service.getUsersData((result: any) => {
-      this.source.load(result.data);
+      this.source.load(result);
     });
   }
 

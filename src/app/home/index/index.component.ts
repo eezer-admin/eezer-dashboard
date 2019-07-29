@@ -14,12 +14,16 @@ export class IndexComponent {
 
   numberOfDrivers: number = 0;
   numberOfVehicles: number = 0;
-
+  totalDistance: number = 0;
+  totalDuration: number = 0;
+  transportService: any;
 
   constructor(private vehiclesService: VehiclesService, private userService: UserService,
     private toastr: ToastrService) {
     // this.getNumberofVehicles();
     // this.getNumberofDrivers();
+    // this.getTotalDistance();
+    // this.getTotalDuration();
   }
 
   getNumberofVehicles(): void {
@@ -31,6 +35,18 @@ export class IndexComponent {
   getNumberofDrivers(): void {
     this.userService.getNumberofDrivers().subscribe((response) => {
       this.numberOfDrivers = response.data;
+    });
+  }
+
+  getTotalDistance(): void {
+    this.transportService.getTotalDistance().subscribe((response) => {
+      this.totalDistance = response.data;
+    });
+  }
+
+  getTotalDuration(): void {
+    this.transportService.getTotalDuration().subscribe((response) => {
+      this.totalDuration = response.data;
     });
   }
 }

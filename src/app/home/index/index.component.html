@@ -17,7 +17,7 @@
 
   <div class="col-xxxl-3 col-md-6">
     <a class="lnk-to-page" href='#/pages/tables/transports'>
-      <ngx-status-card title="Distances" value="10000 km" type="info">
+      <ngx-status-card title="Distances" value="{{totalDistance}} km" type="info">
         <i class="nb-location "></i>
       </ngx-status-card>
     </a>
@@ -25,7 +25,7 @@
 
   <div class="col-xxxl-3 col-md-6">
     <a class="lnk-to-page" href='#/pages/tables/transports'>
-      <ngx-status-card title="Durations" value="10000 hr" type="info">
+      <ngx-status-card title="Durations" value="{{totalDuration}} Hr" type="info">
         <i class="nb-sunny"></i>
       </ngx-status-card>
     </a>
@@ -38,8 +38,8 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-xxl-12 col-md-12">
     <ngx-chartjs></ngx-chartjs>
   </div>
-</div>
+</div> -->

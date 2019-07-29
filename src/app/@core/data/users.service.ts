@@ -32,18 +32,19 @@ export class UserService {
   }
 
   getUsersData(calbk: any) {
-    this.http.get('/getusers').subscribe(users => calbk(users));
+    this.http.get('/getusers').subscribe((result: any) => {
+      const users = result.data.filter(el => el.role.toLowerCase() !== 'driver');
+      calbk(users);
+    });
   }
 
   getDriversData(calbk: any) {
-    this.http.get('/getusers').subscribe((result: any) => {
-      const drivers = result.data.filter(el => el.role.toLowerCase() === 'driver');
+    // this.http.get('/getusers').subscribe((result: any) => {
+    //   const drivers = result.data.filter(el => el.role.toLowerCase() === 'driver');
+    //   calbk(drivers);
+    // });
 
-
-      calbk(drivers);
-
-    });
-
+    this.http.get('/getdrivers').subscribe((result: any) => calbk(result.data));
   }
 
   createUser(user: any): Observable<any> {
@@ -51,9 +52,7 @@ export class UserService {
   }
 
   removeUser(user: any): Observable<any> {
-
     // const options = { params: new HttpParams().set('username', user.email) };
-
     return this.http.delete('/rmuser/' + user.email);
   }
 

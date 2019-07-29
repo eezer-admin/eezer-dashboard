@@ -12,6 +12,12 @@
     text-decoration: none;
   }
 
+  .home-header img {
+    height: 480px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   @include media-breakpoint-down(sm) {
     ngx-traffic {
       display: none;

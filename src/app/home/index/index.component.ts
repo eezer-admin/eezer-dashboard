@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { VehiclesService } from '../../@core/data/vehicles.service';
 import { UserService } from '../../@core/data/users.service';
+import { TransportsService } from '../../@core/data/transports.service';
 
 
 @Component({
@@ -16,14 +17,14 @@ export class IndexComponent {
   numberOfVehicles: number = 0;
   totalDistance: number = 0;
   totalDuration: number = 0;
-  transportService: any;
 
   constructor(private vehiclesService: VehiclesService, private userService: UserService,
+    private transportService: TransportsService,
     private toastr: ToastrService) {
-    // this.getNumberofVehicles();
-    // this.getNumberofDrivers();
-    // this.getTotalDistance();
-    // this.getTotalDuration();
+    this.getNumberofVehicles();
+    this.getNumberofDrivers();
+    this.getTotalDistance();
+    this.getTotalDuration();
   }
 
   getNumberofVehicles(): void {
@@ -46,7 +47,7 @@ export class IndexComponent {
 
   getTotalDuration(): void {
     this.transportService.getTotalDuration().subscribe((response) => {
-      this.totalDuration = response.data;
+      this.totalDuration = response;
     });
   }
 }

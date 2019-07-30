@@ -19,9 +19,7 @@ export class TransportsService {
   }
 
   getLatestTransportCoordination(calbk: any): any {
-    // todo: fetch the latest one from the BE
-    const latestId = 'e6aa53fb-a1f7-4a0e-a69f-63398360513e';
-    this.http.get('/coords/' + latestId).subscribe(coords => calbk(coords));
+    this.http.get('/latestroute').subscribe((res: any) => calbk(res.data.coordinates));
   }
 
   getTotalDistance(): Observable<any> {

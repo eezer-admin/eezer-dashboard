@@ -44,7 +44,7 @@ export class UserService {
     //   calbk(drivers);
     // });
 
-    this.http.get('/getdrivers').subscribe((result: any) => calbk(result.data));
+    this.http.get('/drivers').subscribe((result: any) => calbk(result.data));
   }
 
   createUser(user: any): Observable<any> {
@@ -57,6 +57,6 @@ export class UserService {
   }
 
   getNumberofDrivers(): Observable<any> {
-    return this.http.get('/getNumberDrivers');
+    return this.http.get('/getnumberdrivers');
   }
 }

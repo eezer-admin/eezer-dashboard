@@ -64,6 +64,7 @@ export class TransportsTableComponent {
       result.data.forEach(transport => {
         transport.started = this.formatDate(transport.started)
         transport.ended = this.formatDate(transport.ended)
+        transport.duration = this.formatSeconds(transport.duration);
       });
       this.source.load(result.data);
     });
@@ -82,7 +83,9 @@ export class TransportsTableComponent {
     result += ' ' + d.toLocaleTimeString();
     return result;
   }
-
+  formatSeconds(sec: string): string {
+    return sec
+  }
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();

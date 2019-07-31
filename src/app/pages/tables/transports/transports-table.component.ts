@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-
 import { TransportsService } from '../../../@core/data/transports.service';
 import { Router } from '@angular/router';
 
@@ -27,8 +26,10 @@ export class TransportsTableComponent {
         type: 'string',
       },
       duration: {
-        title: 'Duration (s)',
+        title: 'Duration',
         type: 'string',
+        // sort: false,
+        compareFunction: this.durationCompFunc,
       },
       distance: {
         title: 'Distance (m)',
@@ -54,7 +55,7 @@ export class TransportsTableComponent {
         title: 'Reason',
         type: 'string',
       },
-    }
+    },
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -71,10 +72,11 @@ export class TransportsTableComponent {
   }
 
   formatDate(date) {
-    let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
+    const d = new Date(date),
       year = d.getFullYear();
+
+    let month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate();
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
@@ -83,9 +85,22 @@ export class TransportsTableComponent {
     result += ' ' + d.toLocaleTimeString();
     return result;
   }
+
   formatSeconds(sec: string): string {
-    return sec
+    const sec_num = parseInt(sec, 10),
+      hours = Math.floor(sec_num / 3600),
+      minutes = Math.floor((sec_num - (hours * 3600)) / 60),
+      seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    let strHours, strMinutes, strSeconds;
+
+    if (hours < 10) { strHours = '0' + hours; }
+    if (minutes < 10) { strMinutes = '0' + minutes; }
+    if (seconds < 10) { strSeconds = '0' + seconds; }
+
+    return hours + 'h ' + minutes + 'm ' + seconds + 's ';
   }
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
@@ -93,7 +108,24 @@ export class TransportsTableComponent {
       event.confirm.reject();
     }
   }
+
   onUserRowSelect(event): void {
     this._router.navigate(['/pages/routemap/leaflet/' + event.data.transportId]);
+  }
+
+  durationCompFunc(direction: number, a: string, b: string): number {
+    let num1 = 0, num2 = 0;
+
+    num1 = parseInt(a.replace('h ', '').replace('m ', '').replace('s ', ''), 10);
+    num2 = parseInt(b.replace('h ', '').replace('m ', '').replace('s ', ''), 10);
+
+    if (num1 < num2) {
+      return -1 * direction;
+    }
+    if (num1 > num2) {
+      return direction;
+    }
+
+    return 0;
   }
 }

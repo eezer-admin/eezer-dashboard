@@ -11,19 +11,24 @@ import { NBUserPassAuthProvider } from '../providers/nb-user-pass-auth-provider'
 
 const socialLinks = [
   {
-    url: '#',
+    url: 'https://www.instagram.com/eezer_/',
     target: '_blank',
-    icon: 'socicon-github',
+    icon: 'socicon-instagram',
   },
   {
-    url: '#',
+    url: 'https://www.facebook.com/Eezerinitiative/',
     target: '_blank',
     icon: 'socicon-facebook',
   },
   {
-    url: '#',
+    url: 'https://www.linkedin.com/company/eezer/',
     target: '_blank',
-    icon: 'socicon-twitter',
+    icon: 'socicon-linkedin',
+  },
+  {
+    url: 'https://github.com/EEZER',
+    target: '_blank',
+    icon: 'socicon-github',
   },
 ];
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TransportsService } from '../../../@core/data/transports.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -15,7 +16,22 @@ import { Router } from '@angular/router';
 export class TransportsTableComponent {
 
   settings = {
-    actions: false,
+    // actions: false,
+    add: {
+      addButtonContent: '<i class="nb-plus"></i>',
+      createButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
+    },
+    edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
+    },
     columns: {
       driverId: {
         title: 'Driver ID',
@@ -60,7 +76,7 @@ export class TransportsTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: TransportsService, private _router: Router) {
+  constructor(private service: TransportsService, private _router: Router, private toastr: ToastrService) {
     this.service.getTransportsData((result: any) => {
       result.data.forEach(transport => {
         transport.started = this.formatDate(transport.started)
@@ -103,7 +119,17 @@ export class TransportsTableComponent {
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+      this.service.removeTransport(event.data).subscribe((response) => {
+        if (response.success)
+          event.confirm.resolve();
+        else
+          event.confirm.reject();
+      }, response => {
+        this.toastr.error(response.error.message_extra.join(', <br />'), response.error.message,
+          { timeOut: 3000, enableHtml: true });
+
+        event.confirm.reject();
+      });
     } else {
       event.confirm.reject();
     }

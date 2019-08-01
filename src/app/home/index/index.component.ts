@@ -15,7 +15,7 @@ export class IndexComponent {
 
   numberOfDrivers: number = 0;
   numberOfVehicles: number = 0;
-  totalDistance: number = 0;
+  totalDistance = '0';
   totalDuration: number = 0;
 
   constructor(private vehiclesService: VehiclesService, private userService: UserService,
@@ -41,7 +41,7 @@ export class IndexComponent {
 
   getTotalDistance(): void {
     this.transportService.getTotalDistance().subscribe((response) => {
-      this.totalDistance = response.data;
+      this.totalDistance = this.reformatNumber(response.data);
     });
   }
 
@@ -49,5 +49,9 @@ export class IndexComponent {
     this.transportService.getTotalDuration().subscribe((response) => {
       this.totalDuration = response;
     });
+  }
+
+  reformatNumber(num: number): string {
+    return num.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
   }
 }

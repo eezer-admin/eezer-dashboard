@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TransportsService {
-
   constructor(private http: HttpClient) {
     // this.userArray = Object.values(this.users);
   }
@@ -28,5 +27,10 @@ export class TransportsService {
 
   getTotalDuration(): Observable<any> {
     return this.http.get('/totalduration');
+  }
+
+  removeTransport(data: any): Observable<any> {
+    return this.http.delete('/remove/' + data.transportId);
+
   }
 }

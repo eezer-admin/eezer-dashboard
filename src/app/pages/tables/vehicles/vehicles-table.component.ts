@@ -89,7 +89,17 @@ export class VehiclesTableComponent {
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+      this.service.removeVehicle(event.data).subscribe((response) => {
+        if (response.success)
+          event.confirm.resolve();
+        else
+          event.confirm.reject();
+      }, response => {
+        this.toastr.error(response.error.message_extra.join(', <br />'), response.error.message,
+          { timeOut: 3000, enableHtml: true });
+
+        event.confirm.reject();
+      });
     } else {
       event.confirm.reject();
     }

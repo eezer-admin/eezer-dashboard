@@ -31,6 +31,5 @@ export class TransportsService {
 
   removeTransport(data: any): Observable<any> {
     return this.http.delete('/remove/' + data.transportId);
-
   }
 }

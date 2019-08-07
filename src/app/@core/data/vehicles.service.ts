@@ -23,4 +23,8 @@ export class VehiclesService {
   getNumberofVehicles(): Observable<any> {
     return this.http.get('/getnumbervehicles');
   }
+
+  removeVehicle(data: any): Observable<any> {
+    return this.http.delete('/rmvehicle/' + data.vehicleId);
+  }
 }
